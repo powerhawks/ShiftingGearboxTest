@@ -10,15 +10,21 @@ package org.usfirst.frc.team1111.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
 
+/**
+ * This is an experimental class that tests the drive train with the shifting gearbox.
+ * The gearbox will have a 3-position cylinder that will be controlled by two DoubleSolenoids.
+ * Configuration is TBD and this will be updated when that is available.
+ * @author Braidan
+ *
+ */
 public class Robot extends IterativeRobot {
 	Joystick joy = new Joystick(0);
-	Solenoid soleA = new Solenoid(0, 1111); //TODO: Configure
-	Solenoid soleB = new Solenoid(0, 1111) //TODO: Configure
-	Solenoid soleC = new Solenoid(0, 1111); //TODO: Configure
+	DoubleSolenoid soleA = new DoubleSolenoid(0, 1111); //TODO: Configure
+	DoubleSolenoid soleB = new DoubleSolenoid(0, 1111); //TODO: Configure
 	TalonSRX frontLeft = new TalonSRX(46);
 	TalonSRX frontRight = new TalonSRX(47);
 	TalonSRX backLeft = new TalonSRX(55);
@@ -48,19 +54,19 @@ public class Robot extends IterativeRobot {
 	public void changeGear(int dir) {
 		state += dir;
 		if (state == 0) {
-			soleA.set(false);
-			soleB.set(false);
-			soleC.set(true);
+			// Air to chamber C
+//			soleA.set(false);
+//			soleB.set(false);
 		}
 		else if (state == 1) {
-			soleA.set(true);
-			soleB.set(false);
-			soleC.set(false);
+			//Air to chamber A
+//			soleA.set(true);
+//			soleB.set(false);
 		}
 		else if (state == 2) {
-			soleA.set(false);
-			soleB.set(true);
-			soleC.set(false);
+			//Air to chamber B
+//			soleA.set(false);
+//			soleB.set(true);
 		}
 	}
 	
